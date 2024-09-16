@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import { storeInsession } from '../common/Session';
 import { UserContext } from '../App';
@@ -93,7 +93,7 @@ const Login = () => {
           </button>
         </form>
         <p className="mt-4 text-center">
-          Don't have an account? <a href="/signup" className="text-teal-500">Sign Up</a>
+          Don't have an account? <Link to="/signup" className="text-teal-500">Sign Up</Link>
         </p>
       </div>
     </div>
