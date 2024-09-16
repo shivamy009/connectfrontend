@@ -16,7 +16,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
           <div className="flex justify-center items-center space-x-4 w-full">
-            <a href="/" className="text-blue-500 font-bold text-center">Connect App</a>
+            <Link href="/" className="text-blue-500 font-bold text-center">Connect App</Link>
             {/* <a href="/features" className="hover:text-gray-700">Features</a>
             <a href="/pricing" className="hover:text-gray-700">Pricing</a> */}
           </div>
