@@ -59,6 +59,7 @@ const Login = () => {
     // console.log(data.sendData)
     storeInsession("user",JSON.stringify(data.sendData))
     setUserAuth(data.sendData)
+      navigate('/dashboard')
     toast.dismiss(loadingToast)
     toast.success(data.message)
     // console.log(sessionStorage)
