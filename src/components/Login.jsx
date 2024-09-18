@@ -16,40 +16,59 @@ const Login = () => {
     e.preventDefault();
     
     let loadingToast=toast.loading("Please  wait...")
-    try {
+   //  try {
 
-        if(!username || !password){
-            toast.dismiss(loadingToast)
-            toast.error("Please fill all field")
+   //      if(!username || !password){
+   //          toast.dismiss(loadingToast)
+   //          toast.error("Please fill all field")
 
-            return;
-        }
-      let res=  await axios.post(import.meta.env.VITE_SERVER_DOMAIN+'/login',{  username:username,
-        password:password
-      }
-      )
-   let {data}=res;
-   console.log(data)
-   storeInsession("user",JSON.stringify(data.sendData))
-         setUserAuth(data.sendData)
-   console.log(data.message)
-   if(data?.success){
-       toast.dismiss(loadingToast)
-       navigate('/dashboard')
-      return toast.success(data?.message)
-    //    return
-   }
+   //          return;
+   //      }
+   //    let res=  await axios.post(import.meta.env.VITE_SERVER_DOMAIN+'/login',{  username:username,
+   //      password:password
+   //    }
+   //    )
+   // let {data}=res;
+   // console.log(data)
+   // storeInsession("user",JSON.stringify(data.sendData))
+   //       setUserAuth(data.sendData)
+   // console.log(data.message)
+   // if(data?.success){
+   //     toast.dismiss(loadingToast)
+   //     navigate('/dashboard')
+   //    return toast.success(data?.message)
+   //  //    return
+   // }
    
       
-    } catch (err) {
-        console.log(err)
-        // let {data}=err;
-        toast.dismiss(loadingToast)
-        setError('Failed to register. Please try again.');
-       return toast.error(err.response.data.message)
-        // console.log(err.response.data.message)
-    //   return;
-    }
+   //  } catch (err) {
+   //      console.log(err)
+   //      // let {data}=err;
+   //      toast.dismiss(loadingToast)
+   //      setError('Failed to register. Please try again.');
+   //     return toast.error(err.response.data.message)
+   //      // console.log(err.response.data.message)
+   //  //   return;
+   //  }
+    await axios.post(import.meta.env.VITE_SERVER_DOMAIN+'/login',{
+    username:username,
+    // email:formData.email,
+    password:password
+    // formData,
+   }).then(({data})=>{
+    // console.log(data.sendData)
+    storeInsession("user",JSON.stringify(data.sendData))
+    setUserAuth(data.sendData)
+    toast.dismiss(loadingToast)
+    toast.success(data.message)
+    // console.log(sessionStorage)
+    
+   })
+   .catch(({response})=>{
+    // console.log(response)
+    toast.dismiss(loadingToast)
+    return toast.error(response.data.message)
+   })
   };
 
   return (
